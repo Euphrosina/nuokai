@@ -28,6 +28,10 @@ SAMPLE_TEXT = (
     "小池残暑退，高树早凉归。"
     "落霞与孤鹜齐飞，秋水共长天一色。"
     "糯米团子般圆润，读来安静温和。"
+    "こんにちは、さくら。ひらがなとカタカナ。"
+    "おはようございます。ありがとう。"
+    "안녕하세요. 한국어 테스트입니다."
+    "반갑습니다. 오늘도 좋은 하루 되세요."
 )
 
 
@@ -52,6 +56,13 @@ def build_charset() -> list[str]:
 
     # GB2312 一级汉字，同时带出对应全角标点。
     chars.update(gb2312_level1())
+
+    # 日文平假名与片假名。
+    chars.update(chr(cp) for cp in range(0x3040, 0x3100))
+
+    # 韩文 KS X 1001 常用音节与兼容字母。
+    chars.update(chr(cp) for cp in range(0xAC00, 0xD7A4))
+    chars.update(chr(cp) for cp in range(0x3131, 0x318F))
 
     # 中文标点、全角符号与常见 CJK 符号。
     chars.update("，。、；：？！“”‘’（）《》〈〉【】〔〕…—·～￥％＋－×÷＝")
